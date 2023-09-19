@@ -1,6 +1,7 @@
 package com.example.demokotlin
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,7 +10,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.demokotlin.ui.theme.DemoKotlinTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    PrintToScreen("Abel", "Abel2")
                 }
             }
         }
@@ -30,17 +30,33 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
+fun PrintToScreen(name: String?, name2: String?, modifier: Modifier = Modifier) {
+
+    val name = name ?: run{
+        Log.e("NullError", "Name is Null")
+        return
+    }
+
+    val name2 = name2 ?: run{
+        Log.e("NullError", "Name2 is Null")
+        return
+    }
+
     Text(
-        text = "Hello $name!",
+        text = "Hello ${name}! ${name2}",
         modifier = modifier
     )
-}
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    DemoKotlinTheme {
-        Greeting("Android")
-    }
+    /*name?.let {name ->
+        name2?.let {name2 ->
+            Text(
+                text = "Hello ${name}! ${name2}",
+                modifier = modifier
+            )
+        } ?: run{
+            Log.e("NullError", "Name2 is Null")
+        }
+    } ?: run{
+        Log.e("NullError", "Name is Null")
+    }*/
 }
