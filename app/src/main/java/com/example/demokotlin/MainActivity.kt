@@ -40,6 +40,25 @@ class MainActivity : ComponentActivity() {
                         {
                             PrintToScreen(name)
                         }
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        for(i in names.indices)
+                        {
+                            PrintToScreen(i.toString())
+                        }
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        names.forEach{ name ->
+                            PrintToScreen(name)
+                        }
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        names.forEachIndexed{ i, name ->
+                            PrintToScreen(i.toString() + " " + name)
+                        }
                     }
                 }
             }
