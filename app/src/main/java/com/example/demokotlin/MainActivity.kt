@@ -13,10 +13,33 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.demokotlin.ui.theme.DemoKotlinTheme
 
 class MainActivity : ComponentActivity() {
+
+    enum class Colors(val color: Color, val translationKey: String)
+    {
+        Red(Color.Red, "Color_Key_Red"),
+        Green(Color.Green, "Color_Key_Green"),
+        Blue(Color.Blue, "Color_Key_Blue");
+
+
+    }
+
+    enum class Operations(val operation: (Int, Int) -> Int, val priority: Int)
+    {
+        Add({a, b -> a + b}, 0),
+        Subtract({a, b -> a - b}, 0);
+
+        fun Calculate(a: Int, b: Int) : Int {
+            return this.operation(a, b)
+        }
+
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -28,37 +51,12 @@ class MainActivity : ComponentActivity() {
                 ) {
                     Column() {
 
-                        for (i in 1..5)
-                        {
-                            PrintToScreen("Abel")
-                        }
-                        Spacer(modifier = Modifier.height(16.dp))
+                        val operation = Operations.Add
 
-                        val names = listOf("Abel", "Adria")
+                        val result = operation.Calculate(1, 2)
 
-                        for (name in names)
-                        {
-                            PrintToScreen(name)
-                        }
+                        PrintToScreen(name = result.toString())
 
-                        Spacer(modifier = Modifier.height(16.dp))
-
-                        for(i in names.indices)
-                        {
-                            PrintToScreen(i.toString())
-                        }
-
-                        Spacer(modifier = Modifier.height(16.dp))
-
-                        names.forEach{ name ->
-                            PrintToScreen(name)
-                        }
-
-                        Spacer(modifier = Modifier.height(16.dp))
-
-                        names.forEachIndexed{ i, name ->
-                            PrintToScreen(i.toString() + " " + name)
-                        }
                     }
                 }
             }
@@ -67,10 +65,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun PrintToScreen(name: String, modifier: Modifier = Modifier) {
+fun PrintToScreen(name: String, modifier: Modifier = Modifier, color: Color? = null) {
 
     Text(
         text = "Hello ${name}!",
-        modifier = modifier
+        modifier = modifier,
+        color = color ?: Color.Black
     )
 }
