@@ -19,25 +19,21 @@ import com.example.demokotlin.ui.theme.DemoKotlinTheme
 
 class MainActivity : ComponentActivity() {
 
-    enum class Colors(val color: Color, val translationKey: String)
-    {
-        Red(Color.Red, "Color_Key_Red"),
-        Green(Color.Green, "Color_Key_Green"),
-        Blue(Color.Blue, "Color_Key_Blue");
-
-
+    
+    open class Fruit(val name: String = "Generic Fruit") {
+        
     }
-
-    enum class Operations(val operation: (Int, Int) -> Int, val priority: Int)
-    {
-        Add({a, b -> a + b}, 0),
-        Subtract({a, b -> a - b}, 0);
-
-        fun Calculate(a: Int, b: Int) : Int {
-            return this.operation(a, b)
+    
+    class Apple(): Fruit("Apple") {
+        fun AppleFunc(){
+            
         }
-
-
+    }
+    
+    class Banana(): Fruit("Banana"){
+        fun BananaFunc(){
+            
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,11 +47,27 @@ class MainActivity : ComponentActivity() {
                 ) {
                     Column() {
 
-                        val operation = Operations.Add
+                        val fruits = listOf(Banana(), Apple(), null)
+                        
+                        fruits.forEach{ fruit ->
+                            when(fruit){
+                                is Banana -> {
+                                    fruit.BananaFunc()
+                                }
+                                
+                                is Apple -> {
+                                    fruit.AppleFunc()
+                                }
+                                
+                                else -> PrintToScreen(name = "I don't know")
+                            }
+                        }
 
-                        val result = operation.Calculate(1, 2)
+                        val weekDay = "Monday"
 
-                        PrintToScreen(name = result.toString())
+                        when(weekDay){
+                            "Monday" -> "Today is monday"
+                        }
 
                     }
                 }
@@ -68,7 +80,7 @@ class MainActivity : ComponentActivity() {
 fun PrintToScreen(name: String, modifier: Modifier = Modifier, color: Color? = null) {
 
     Text(
-        text = "Hello ${name}!",
+        text = name,
         modifier = modifier,
         color = color ?: Color.Black
     )
