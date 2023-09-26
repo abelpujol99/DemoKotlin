@@ -9,13 +9,57 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!!">
-
     </TextView>
+
     <Button
         android:id="@+id/startScreenButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="My Button">
-
     </Button>
+
+    <EditText
+        android:id="@+id/startScreenEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="300dp"
+        android:hint="Set text on me">
+    </EditText>
+
+    <ImageView
+        android:id="@+id/startScreenImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher_background">
+    </ImageView>
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </Switch>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="400dp"
+        android:minHeight="400dp">
+
+        <TextView
+            android:id="@+id/r1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="In Relative">
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="In 111 Relative"
+            android:layout_toEndOf="@+id/r1"
+            android:layout_margin="10dp">
+        </TextView>
+
+    </RelativeLayout>
+
 </LinearLayout>
