@@ -4,25 +4,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/result"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="0"
-        android:textSize="@dimen/text_size_mid"
-        android:textAlignment="viewEnd"
-        android:padding="@dimen/padding_normal">
+    <Button
+        android:id="@+id/test_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-    </TextView>
-    
-    <LinearLayout
-        android:id="@+id/buttons_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/primary"
-        android:orientation="vertical">
-
-    </LinearLayout>
+    </Button>
 
 
 </LinearLayout>
