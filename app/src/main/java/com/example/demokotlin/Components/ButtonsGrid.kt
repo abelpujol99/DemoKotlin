@@ -1,8 +1,9 @@
-package com.example.demokotlin
+package com.example.demokotlin.Components
 
 import android.content.Context
 import android.widget.Button
 import android.widget.LinearLayout
+import com.example.demokotlin.R
 
 class ButtonsGrid(val context: Context, val parentLinearLayout: LinearLayout) {
 
@@ -49,7 +50,7 @@ class ButtonsGrid(val context: Context, val parentLinearLayout: LinearLayout) {
         return rows[index];
     }
 
-    fun AddRow() : ButtonsRow{
+    fun AddRow() : ButtonsRow {
 
         val buttonRow = ButtonsRow(context, parentLinearLayout);
         rows.add(buttonRow);

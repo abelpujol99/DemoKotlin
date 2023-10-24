@@ -1,10 +1,12 @@
-package com.example.demokotlin.Heroes
+package com.example.demokotlin.Heroes.Repositories
 
-class HeroRepository {
+import com.example.demokotlin.Heroes.HeroData
+
+class HeroMockRepository : HeroRepository{
 
     companion object{
 
-        private val heroesListHardcoded = listOf(
+        private val heroesListHardcoded = mutableListOf<HeroData>(
             HeroData("Aquaman", "Es un pez"),
             HeroData("Superman", "Debil ante una gema verde"),
             HeroData("Batman", "Es huerfano"),
@@ -15,8 +17,11 @@ class HeroRepository {
             HeroData("SpiderCerdo", "Es un pez"),
             HeroData("SpiderCerdo", "Es un pez"),
             HeroData("SpiderCerdo", "Es un pez")
-            )
+        )
 
-        fun GetAllHeroes(): List<HeroData> = heroesListHardcoded
+    }
+
+    override suspend fun GetHeroes(): MutableList<HeroData> {
+        return heroesListHardcoded;
     }
 }
