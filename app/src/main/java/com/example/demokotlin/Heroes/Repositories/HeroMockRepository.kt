@@ -21,7 +21,20 @@ class HeroMockRepository : HeroRepository{
 
     }
 
-    override suspend fun GetHeroes(): MutableList<HeroData> {
-        return heroesListHardcoded;
+    override suspend fun GetHeroes(offset: Int, limit: Int): MutableList<HeroData> {
+
+        val heroes = heroesListHardcoded
+
+        if (heroes.size <= offset)
+        {
+            return mutableListOf()
+        }
+
+        if(heroes.size <= offset + limit)
+        {
+            return heroes.subList(offset,heroes.size - 1)
+        }
+
+        return heroesListHardcoded.subList(offset, limit);
     }
 }

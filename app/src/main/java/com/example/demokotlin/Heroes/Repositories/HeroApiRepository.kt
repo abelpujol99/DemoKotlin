@@ -28,8 +28,12 @@ class HeroApiRepository : HeroRepository {
         }
 
         val ApiService: RetrofitHeroApiService by lazy {
-            Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create())
-                .build().create(RetrofitHeroApiService::class.java)
+
+            Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+                .create(RetrofitHeroApiService::class.java)
         }
     }
 
@@ -38,13 +42,15 @@ class HeroApiRepository : HeroRepository {
         suspend fun GetHeroes(
             @Query("ts") timestamp: String = Timestamp,
             @Query("apikey") apiKey: String = API_KEY,
-            @Query("hash") hash: String = Hash
+            @Query("hash") hash: String = Hash,
+            @Query("offset") offset: Int,
+            @Query("limit") limit: Int
         ) : Response<CharactersResponse>
     }
 
-    override suspend fun GetHeroes(): MutableList<HeroData> {
+    override suspend fun GetHeroes(offset: Int, limit: Int): MutableList<HeroData> {
 
-        val response = ApiService.GetHeroes()
+        val response = ApiService.GetHeroes(offset = offset, limit = limit)
 
         if (response.isSuccessful){
             response.body()?.charactersData?.heroList?.let{heroes ->

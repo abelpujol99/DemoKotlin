@@ -26,18 +26,10 @@ class MainActivity : ComponentActivity() {
 
         table.layoutManager = LinearLayoutManager(this)
 
-        //val repository = HeroMockRepository();
+        val repository = HeroMockRepository();
         //val repository = HeroSharedDataBase();
-        val repository = HeroApiRepository();
+        //val repository = HeroApiRepository();
 
-        val provider = HeroProvider(repository);
-
-        CoroutineScope(Dispatchers.IO).launch {
-            val heroes = provider.GetAllHeroes()
-
-            CoroutineScope(Dispatchers.Main).launch {
-                table.adapter = HeroAdapter(heroes)
-            }
-        }
+        table.adapter = HeroAdapter(repository)
     }
 }
